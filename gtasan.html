@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>GTASanAndreas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; background: #1b2430; color: #fff; }
+    a { color: #00aaff; text-decoration: none; }
+
+    .topbar { background: #000; text-align: center; padding: 10px; font-size: 16px; font-weight: bold; }
+    header { padding: 15px 20px; background: #202a36; display: flex; justify-content: flex-start; align-items: center; }
+    header a { color: #00aaff; font-size: 18px; text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 20px auto; padding: 10px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+
+    .box { background: #2a3442; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .title { font-size: 22px; margin-bottom: 15px; }
+    .price { font-size: 42px; text-align: center; margin: 20px 0; background: #101820; padding: 15px 0; border-radius: 10px; font-weight: bold; color: #00ffea; border: 2px solid #00aaff; }
+    .warning { background: #fff; color: #000; padding: 10px; border-radius: 6px; font-size: 14px; margin-bottom: 15px; }
+
+    .robux-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin-top: 10px; }
+    .robux-btn {
+      background: #1f2a38; color: #00aaff; padding: 12px 0; border-radius: 8px; text-align: center; cursor: pointer;
+      font-size: 14px; transition: all 0.2s ease; font-weight: bold; border: 1px solid #00aaff; box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    }
+    .robux-btn:hover { background: #00aaff; color: #fff; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.4); }
+    .robux-btn.active { background: #00aaff; color: #fff; font-weight: bold; box-shadow: 0 6px 12px rgba(0,0,0,0.4); }
+
+    input { width: 100%; padding: 12px; border-radius: 6px; border: none; margin-top: 10px; font-size: 14px; }
+
+    .side img { width: 100%; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .note { font-size: 13px; color: #ccc; margin-top: 8px; }
+
+    #buyBtn { margin-top: 15px; width: 100%; padding: 14px 0; border: none; border-radius: 8px; background: linear-gradient(90deg,#00aaff,#00ffea); color: #000; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
+    #buyBtn:hover { background: linear-gradient(90deg,#00ffea,#00aaff); color: #fff; transform: translateY(-2px); }
+
+    /* MODAL */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+    .modal-box { background: #1b2430; padding: 20px; border-radius: 12px; width: 90%; max-width: 350px; color: #fff; }
+    .modal-box h3 { margin-bottom: 10px; }
+    .copy { color: #00aaff; cursor: pointer; }
+    .close-btn { width: 100%; padding: 10px; background: #444; border: none; border-radius: 6px; color: white; cursor: pointer; }
+    .modal .note { font-size: 13px; color: #ccc; margin: 10px 0; }
+
+    @media(max-width:900px){ .container { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">DreamLeagueSoccer GEM ЦЭНЭГЛЭЛТ</div>
+
+<header>
+  <a href="index.html">⌂ Home</a>
+</header>
+
+<div class="container">
+
+  <!-- LEFT SIDE -->
+  <div>
+    <div class="box">
+      <div class="title">Үнэ</div>
+      <div class="price">₮0</div>
+    </div>
+
+    <div class="box">
+      <div class="title">Бүтээгдэхүүн сонголт</div>
+      <div class="warning">⚠ Худалдан авах сонголтоо хийнэ үү.</div>
+      <div class="robux-grid">
+        <div class="robux-btn">GTASA татах</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="side">
+    <div class="box">
+      <img src="titem.jpg" alt="Titem GameStore">
+      <p>
+        <a href="https://www.facebook.com/profile.php?id=100085188135908">Titem's GameStore</a><br>
+        Дээрх Facebook хуудсаар дамжуулан захиалга дуусгаад GTASA татуулна  уу.
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="title">Facebook Name</div>
+      <input id="email" type="email" placeholder="FB оруулна уу">
+      <p class="note">Төлбөр төлсөн FB гэж явах учир зөв FB ээ оруулна уу.</p>
+      <button id="buyBtn">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal">
+  <div class="modal-box">
+    <h3>Төлбөр хийх данс</h3>
+    <p><b>Банк:</b> Хаан банк</p>
+    <p><b>Данс:</b> <span class="copy" onclick="copyAccount()">5439602581</span> <small>(дарж copy)</small></p>
+    <p><b>Дансны нэр:</b> М.Энххүслэн</p>
+    <p class="note"><b>Гүйлгээний утга:</b> FB Name</p>
+    <button class="close-btn" onclick="closePayment()">Хаах</button>
+  </div>
+</div>
+<script>
+  const buttons = document.querySelectorAll('.robux-btn');
+  const priceDisplay = document.querySelector('.price');
+
+  const gemPrices = {
+    "GTASA татах": 4500,
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const selected = btn.textContent.trim();
+      priceDisplay.textContent = `${gemPrices[selected].toLocaleString()}₮`;
+    });
+  });
+
+  const buyBtn = document.getElementById('buyBtn');
+  const emailInput = document.getElementById('email');
+
+  buyBtn.addEventListener('click', () => {
+    const selectedButton = document.querySelector('.robux-btn.active');
+    const email = emailInput.value.trim();
+    if (!selectedButton) { alert('GEM сонгоно уу!'); return; }
+    if (!email) { alert('Имэйлээ оруулна уу!'); return; }
+    document.getElementById("paymentModal").style.display = "flex";
+  });
+
+  function closePayment() { document.getElementById("paymentModal").style.display = "none"; }
+
+  function copyAccount() {
+    navigator.clipboard.writeText("5439602581");
+    alert("Дансны дугаар хуулагдлаа");
+  }
+</script>
+
+</body>
+</html>
