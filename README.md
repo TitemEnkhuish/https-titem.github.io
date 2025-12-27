@@ -1,2 +1,2 @@
-# my-website1titem
+# titem
 Titem's GameStore
