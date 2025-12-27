@@ -1,178 +1,222 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Titem GameStore</title>
-   <nav class="bg-[#0b1e3b] flex items-center justify-between px-10 py-4">
-    <div class="flex items-center space-x-2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titem GameStore</title>
 
-    </div>
+<style>
+/* RESET & GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-    <div class="hidden md:flex items-center space-x-8 text-white text-base">
-    </div>
-  </nav>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body {
+  background: #0f1720;
+  color: #fff;
+}
 
-    body {
-      background: #1b2430;
-      color: #fff;
-    }
+/* HEADER */
+header {
+  background: #0b1e3b;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    /* TOP BAR */
-    .topbar {
-      background: #000;
-      text-align: center;
-      padding: 8px;
-      font-size: 14px;
-    }
+/* SECTIONS */
+.section {
+  padding: 30px;
+}
 
-    /* HEADER */
-    header {
-      background: #202a36;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.section-title {
+  font-size: 22px;
+  border-bottom: 2px solid #00aaff;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
 
-    header h1 {
-      font-size: 20px;
-    }
+/* GRID CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
 
-    .search {
-      position: relative;
-    }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
 
-    .search input {
-      padding: 8px 35px 8px 10px;
-      border-radius: 4px;
-      border: none;
-      width: 240px;
-    }
+.card {
+  background: #111820;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  transition: 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    /* SECTION TITLE */
-    .section {
-      padding: 30px;
-    }
+.card:hover {
+  transform: translateY(-6px);
+}
 
-    .section h2 {
-      font-size: 22px;
-      border-bottom: 2px solid #00aaff;
-      padding-bottom: 10px;
-      margin-bottom: 25px;
-    }
+/* IMAGE BOXES (UNIFORM SIZE) */
+.img-box, .download-box {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;  /* placeholder if image missing */
+}
 
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-    }
+.img-box {
+  height: 150px;      /* card images */
+}
 
-    /* CARD */
-    .card {
-      background: #111820;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
+.download-box {
+  height: 180px;      /* download image */
+  border-radius: 16px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.img-box img, .download-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    .card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
+/* CARD TEXT */
+.card h3 {
+  font-size: 14px;
+  margin: 8px 0 4px 0;
+}
 
-    .card h3 {
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
+.card p {
+  font-size: 12px;
+  color: #aab4c1;
+  margin-bottom: 4px;
+}
 
-    .card p {
-      font-size: 12px;
-      color: #aaa;
-    }
+/* DOWNLOAD CARD (LEFT SIDE) */
+.download-card {
+  background: #111820;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: left;
+  max-width: 300px;
+  margin-left: 0;      /* зүүн талд наалдуулж байрлуулна */
+  margin-right: auto;   /* баруун талд зай авна */
+}
 
-    /* FOOTER */
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 13px;
-    }
-  </style>
+/* FOOTER */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  font-size: 13px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="topbar">Санал хүсэлт байвал бидэнтэй холбогдоно уу</div>
+<header>Titem's GameStore</header>
 
-<header>
-  <h1>Titem's GameStore</h1>
-</header>
-
+<!-- TOGLOOM -->
 <section class="section">
-  <h2> </h2>
+<h2 class="section-title">Тоглоомууд</h2>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="card">
-  <img src="Roblox_Logo_2022.jpg">
-  <h3>Roblox</h3>
-  <p>Robux цэнэглэлт</p>
-  <a href="roblox.html" class="btn">Дэлгэрэнгүй</a>
-</div>
- 
-
-    <div class="card">
-      <img src="standoff2.jpg">
-      <h3>Standoff2</h3>
-      <p>Gold цэнэглэлт</p>
-      <a href="standoff.html" class="btn">Дэлгэрэнгүй</a>
+<a href="roblox.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="Roblox_Logo_2022.jpg" alt="Roblox">
     </div>
-
-    <div class="card">
-      <img src="dls.png">
-      <h3>DreamLeagueSoccer</h3>
-      <p>Coin цэнэглэлт</p>
-      <a href="dlscoin.html" class="btn">Дэлгэрэнгүй</a>
-    </div>
-    
-    <div class="card">
-      <img src="dls.png">
-      <h3>DreamLeagueSoccer</h3>
-      <p>Gem цэнэглэлт</p>
-      <a href="dlsgem.html" class="btn">Дэлгэрэнгүй</a>
-    </div>
-
-    <div class="card">
-      <img src="blockman.webp">
-      <h3>BlockmanGo!</h3>
-      <p>Gcube цэнэглэлт</p>
-      <a href="bmgo.html" class="btn">Дэлгэрэнгүй</a>
-    </div>
-
-    <div class="card">
-      <img src="stumble.webp">
-      <h3>Stumble Guys тун удахгүй</h3>
-      <p>Gems цэнэглэлт</p>
-      <a href="" class="btn">Дэлгэрэнгүй</a>
-    </div>
+    <h3>Roblox</h3>
+    <p>Robux цэнэглэлт</p>
   </div>
+</a>
+
+<a href="standoff.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="standoff2.jpg" alt="Standoff 2">
+    </div>
+    <h3>Standoff 2</h3>
+    <p>Gold цэнэглэлт</p>
+  </div>
+</a>
+
+<a href="dlscoin.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="dls.png" alt="DLS Coin">
+    </div>
+    <h3>DLS</h3>
+    <p>Coin цэнэглэлт</p>
+  </div>
+</a>
+
+<a href="dlsgem.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="dls.png" alt="DLS Gem">
+    </div>
+    <h3>DLS</h3>
+    <p>Gem цэнэглэлт</p>
+  </div>
+</a>
+
+<a href="bmgo.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="blockman.webp" alt="Blockman Go">
+    </div>
+    <h3>Blockman Go</h3>
+    <p>Gcube цэнэглэлт</p>
+  </div>
+</a>
+   <a href="#" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="stumble.webp" alt="stum">
+    </div>
+    <h3>Stumble Guys</h3>
+    <p>Тун Удахгүй</p>
+  </div>
+</a>
+</div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section">
+<h2 class="section-title">Тоглоом татах</h2>
+
+<div class="download-card">
+ <a href="gtasan.html" class="card-link">
+  <div class="card">
+    <div class="img-box">
+      <img src="GTASABOX.jpg" alt="gta">
+    </div>
+    <h3>GTA SanAndreas</h3>
+    <p>Apple дээр татах</p>
+  </div>
+</div>
 </section>
 
 <footer>
-  © 2025 Titem's GameStore
-  FB:Titem's GameStore
+© 2025 Titem's GameStore<br>
+FB: Titem's GameStore
 </footer>
 
 </body>
