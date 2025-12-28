@@ -91,9 +91,9 @@
     </div>
 
     <div class="box">
-      <div class="title">Имэйл</div>
-      <input id="email" type="email" placeholder="Имэйлээ оруулна уу">
-      <p class="note">Төлбөр төлөгдсөний дараа мэдээлэл илгээгдэх тул зөв имэйл оруулна уу.</p>
+      <div class="title">Facebook Name</div>
+      <input id="email" type="email" placeholder="FB оруулна уу">
+      <p class="note">Төлбөр төлсөн FB гэж явах учир зөв FB ээ оруулна уу.</p>
       <button id="buyBtn">Buy Now</button>
     </div>
   </div>
@@ -142,7 +142,7 @@
     const selectedButton = document.querySelector('.robux-btn.active');
     const email = emailInput.value.trim();
     if (!selectedButton) { alert('COIN сонгоно уу!'); return; }
-    if (!email) { alert('Имэйлээ оруулна уу!'); return; }
+    if (!email) { alert('FB оруулна уу!'); return; }
     openPayment();
   });
 
